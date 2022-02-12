@@ -2,7 +2,7 @@
   <div class="content-wrapper">
     <div class="top-container">
       <div class="score-container">
-        Score: 10
+        Score: {{score}}
       </div>
       <div class="timer-container">
         Time left: 10s
@@ -12,7 +12,10 @@
       <div class="question" [innerHtml]="quizService.questionsData[questionIndex].question">
         
       </div>
-      <button *ngFor="let option of quizService.questionsData[questionIndex].incorrect_answers" class="option" mat-button>
+      <button (click)="selectAnswer(option)"
+      [class.correct-option]="userAnswer == option && userAnswer == quizService.questionsData[questionIndex].correct_answer"
+      [class.wrong-option]="userAnswer == option && userAnswer != quizService.questionsData[questionIndex].correct_answer"
+      *ngFor="let option of quizService.questionsData[questionIndex].incorrect_answers" class="option" mat-button>
         {{option}}
       </button>
     </div>
