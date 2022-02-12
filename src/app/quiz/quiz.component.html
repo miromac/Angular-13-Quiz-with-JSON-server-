@@ -5,7 +5,7 @@
         Score: {{score}}
       </div>
       <div class="timer-container">
-        Time left: 10s
+        Time left: {{countdown}}s
       </div>
     </div>
     <div class="question-container" *ngIf="quizService.questionsData.length != 0">
@@ -13,7 +13,9 @@
         
       </div>
       <button (click)="selectAnswer(option)"
-      [class.correct-option]="userAnswer == option && userAnswer == quizService.questionsData[questionIndex].correct_answer"
+      [class.correct-option]="(userAnswer == option && userAnswer == quizService.questionsData[questionIndex].correct_answer)
+        || (userAnswer != '' && userAnswer != option && option == quizService.questionsData[questionIndex].correct_answer)
+        || (userAnswer == '' && countdown == 0 && option == quizService.questionsData[questionIndex].correct_answer)"
       [class.wrong-option]="userAnswer == option && userAnswer != quizService.questionsData[questionIndex].correct_answer"
       *ngFor="let option of quizService.questionsData[questionIndex].incorrect_answers" class="option" mat-button>
         {{option}}

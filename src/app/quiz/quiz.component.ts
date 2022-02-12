@@ -18,7 +18,17 @@ export class QuizComponent implements OnInit {
       this.quizService.questionsData = res.results;
       this.quizService.questionsData[this.questionIndex].incorrect_answers.push(this.quizService.questionsData[this.questionIndex].correct_answer);
       this.quizService.questionsData[this.questionIndex].incorrect_answers.sort(() => 0.5 - Math.random());
-      
+      let timer = setInterval(()=>{
+        if (this.userAnswer == "" && this.countdown != 0) {
+          this.countdown --;
+        }
+        if (this.countdown == 0) {
+          clearInterval(timer);
+          setTimeout(()=>{
+            this.router.navigate(['/home']);
+          }, 4000);
+        }
+      }, 1000);
     }).catch((err)=>{
       console.log(err);
     });
@@ -28,10 +38,11 @@ export class QuizComponent implements OnInit {
   questionIndex = 0;
   userAnswer = "";
   score = 0;
+  countdown = 15;
 
   selectAnswer(option: string) {
     this.userAnswer = option;
-    
+
     if (this.quizService.questionsData[this.questionIndex].correct_answer == option)
     {
       this.score += 5;
@@ -41,13 +52,13 @@ export class QuizComponent implements OnInit {
         this.questionIndex++;
         this.quizService.questionsData[this.questionIndex].incorrect_answers.push(this.quizService.questionsData[this.questionIndex].correct_answer);
         this.quizService.questionsData[this.questionIndex].incorrect_answers.sort(() => 0.5 - Math.random());
-        
-      }, 2000);
+        this.countdown = 15;
+      }, 4000);
     }
     else {
       setTimeout(()=>{
         this.router.navigate(['/home']);
-      }, 2000);
+      }, 4000);
     }
   }
 
