@@ -24,6 +24,7 @@ export class QuizComponent implements OnInit {
         }
         if (this.countdown == 0) {
           clearInterval(timer);
+          this.quizService.updateScore(this.score);
           setTimeout(()=>{
             this.router.navigate(['/home']);
           }, 4000);
@@ -56,6 +57,7 @@ export class QuizComponent implements OnInit {
       }, 4000);
     }
     else {
+      this.quizService.updateScore(this.score);
       setTimeout(()=>{
         this.router.navigate(['/home']);
       }, 4000);

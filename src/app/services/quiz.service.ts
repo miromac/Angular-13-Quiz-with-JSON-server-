@@ -8,11 +8,8 @@ export class QuizService {
 
   constructor(private http:HttpClient) { }
 
-  questionsData:Array<any> = [];
-
-  // public getQuestions(): Quiz[] {
-  //   return QuizList;
-  // }
+  public questionsData:Array<any> = [];
+  public userName = "";
 
   public getQuestions(){
     return new Promise<any>((resolve, reject)=>{
@@ -25,6 +22,41 @@ export class QuizService {
         }
       );
     })
+  }
+
+  public updateScore(score:any){
+    this.http.get("http://localhost:3000/leaderboard?username=" + this.userName).subscribe(
+      (res:any)=>{
+        if(res.length == 0){
+          this.http.post('http://localhost:3000/leaderboard', {username: this.userName, score: score}).subscribe(
+            (resp)=>{
+              console.log('post');
+              console.log(resp);
+            },
+            (error)=>{
+              console.log(error);
+            }
+          );
+        }
+        else{
+          console.log(res);
+          if(res[0].score < score){
+            res[0].score = score;
+            this.http.put('http://localhost:3000/leaderboard/' + res[0].id, res[0]).subscribe(
+              (uRes)=>{
+                console.log(uRes);
+              },
+              (uErr)=>{
+                console.log(uErr);
+              }
+              );
+          }
+        }
+      },
+      (err)=>{
+        console.log(err);
+      }
+    );
   }
 
 }
