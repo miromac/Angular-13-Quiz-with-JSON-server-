@@ -8,14 +8,13 @@
         Time left: 10s
       </div>
     </div>
-    <div class="question-container">
-      <div class="question">
-        How many days are in the leap year?
+    <div class="question-container" *ngIf="quizService.questionsData.length != 0">
+      <div class="question" [innerHtml]="quizService.questionsData[questionIndex].question">
+        
       </div>
-      <button class="option" mat-button>355</button>
-      <button class="option" mat-button>356</button>
-      <button class="option" mat-button>365</button>
-      <button class="option" mat-button>366</button>
+      <button *ngFor="let option of quizService.questionsData[questionIndex].incorrect_answers" class="option" mat-button>
+        {{option}}
+      </button>
     </div>
   </div>
 </div>
