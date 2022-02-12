@@ -13,12 +13,11 @@
         
       </div>
       <button (click)="selectAnswer(option)"
-      [class.correct-option]="(userAnswer == option && userAnswer == quizService.questionsData[questionIndex].correct_answer)
-        || (userAnswer != '' && userAnswer != option && option == quizService.questionsData[questionIndex].correct_answer)
-        || (userAnswer == '' && countdown == 0 && option == quizService.questionsData[questionIndex].correct_answer)"
-      [class.wrong-option]="userAnswer == option && userAnswer != quizService.questionsData[questionIndex].correct_answer"
-      *ngFor="let option of quizService.questionsData[questionIndex].incorrect_answers" class="option" mat-button>
-        {{option}}
+        [class.correct-option]="(userAnswer == option && userAnswer == quizService.questionsData[questionIndex].correct_answer)
+          || (userAnswer != '' && userAnswer != option && option == quizService.questionsData[questionIndex].correct_answer)
+          || (userAnswer == '' && countdown == 0 && option == quizService.questionsData[questionIndex].correct_answer)"
+        [class.wrong-option]="userAnswer == option && userAnswer != quizService.questionsData[questionIndex].correct_answer"
+        *ngFor="let option of quizService.questionsData[questionIndex].incorrect_answers" class="option" mat-button [innerHtml]="option">
       </button>
     </div>
   </div>

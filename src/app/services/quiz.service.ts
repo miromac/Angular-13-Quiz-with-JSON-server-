@@ -59,4 +59,17 @@ export class QuizService {
     );
   }
 
+  public getHighScores(){
+    return new Promise<any>((resolve, reject)=>{
+      this.http.get('http://localhost:3000/leaderboard').subscribe(
+        (res)=>{
+          resolve(res);
+        },
+        (err)=>{
+          reject(err);
+        }
+      );
+    });
+  }
+
 }

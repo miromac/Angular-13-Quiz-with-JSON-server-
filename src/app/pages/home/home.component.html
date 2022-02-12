@@ -11,17 +11,9 @@
         <div class="name-col">Username</div>
         <div class="score-col">Score</div>
       </div>
-      <div class="row">
-        <div class="name-col">Goldman</div>
-        <div class="score-col">120</div>
-      </div>
-      <div class="row">
-        <div class="name-col">Silverman</div>
-        <div class="score-col">95</div>
-      </div>
-      <div class="row">
-        <div class="name-col">Bronzeman</div>
-        <div class="score-col">55</div>
+      <div class="row" *ngFor="let score of scores">
+        <div class="name-col">{{score.username}}</div>
+        <div class="score-col">{{score.score}}</div>
       </div>
     </div>
   </div>
