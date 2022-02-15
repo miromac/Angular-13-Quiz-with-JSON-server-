@@ -62,3 +62,12 @@
   background-color: rgb(201, 33, 27);
   color: white;
 }
+
+.congratulations span {
+  font-size: 2em;
+  background: rgb(203, 253, 64);
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  margin-top: 2em;
+}

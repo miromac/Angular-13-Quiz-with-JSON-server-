@@ -8,6 +8,11 @@
         Time left: {{countdown}}s
       </div>
     </div>
+    <div *ngIf="isCongratulation" class="congratulations">
+      <span>
+        Congratulations {{username}} ! Your score is {{score}} .
+      </span>
+    </div>
     <div class="question-container" *ngIf="quizService.questionsData.length != 0">
       <div class="question" [innerHtml]="quizService.questionsData[questionIndex].question">
         

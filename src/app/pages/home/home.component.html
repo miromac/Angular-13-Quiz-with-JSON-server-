@@ -4,7 +4,7 @@
       <mat-label>Name</mat-label>
       <input matInput [(ngModel)]="quizService.userName" placeholder="Enter your name"/>
     </mat-form-field>
-    <button routerLink="/quiz" class="start-button" mat-button>Start</button>
+    <button (click)="onStart()" class="start-button" mat-button>Start</button>
     <h2>Leaderboard</h2>
     <div class="leaderboard">
       <div class="top-row">

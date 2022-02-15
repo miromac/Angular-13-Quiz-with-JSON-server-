@@ -13,8 +13,9 @@ export class QuizService {
 
   public getQuestions(){
     return new Promise<any>((resolve, reject)=>{
-      this.http.get('https://opentdb.com/api.php?amount=20&difficulty=hard&type=multiple').subscribe(
+      this.http.get("http://localhost:3000/results").subscribe(
         (res)=>{
+          //console.log(res)
           resolve(res);
         },
         (err)=>{
